@@ -12,7 +12,7 @@ class TrucAdapter : ListAdapter<Truc, TrucAdapter.TrucViewHolder>(TrucDiffCallba
 
     inner class TrucViewHolder(private val binding: TrucItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Truc) {
-            binding.tvElement.text = "a: ${item.a}, b: ${item.b}, c: ${item.c}"
+            binding.tvElement.text = "nombre: ${item.nombre}, description: ${item.description}, reprensation: ${item.representation}"
         }
     }
 
@@ -33,6 +33,8 @@ object TrucDiffCallback : DiffUtil.ItemCallback<Truc>() {
     }
 
     override fun areContentsTheSame(oldItem: Truc, newItem: Truc): Boolean {
-        return oldItem == newItem
+        return oldItem.nombre == newItem.nombre &&
+                oldItem.description == newItem.description &&
+                oldItem.representation == newItem.representation
     }
 }

@@ -7,18 +7,23 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_long_list"
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:listitem="@layout/long_item" />
+        android:layout_height="wrap_content"
+        android:id="@+id/number_input"
+        android:hint="Enter a number"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/fetch_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fetch Data" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_truc_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/truc_item" />
 </LinearLayout>

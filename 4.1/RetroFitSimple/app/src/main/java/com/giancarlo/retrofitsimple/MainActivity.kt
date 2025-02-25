@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.button.setOnClickListener({
             val service: service = RetrofitUtil.get()
             val nom: String = binding.allo.text.toString()
-            val call: Call<String> = service.listReposString(nom)
+            val call: Call<String> = service.listNombres(nom)
             call.enqueue(object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     if (response.isSuccessful) {

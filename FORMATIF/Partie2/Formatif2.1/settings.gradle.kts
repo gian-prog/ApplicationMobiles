@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RetroFitSimple"
+rootProject.name = "Formatif2.1"
 include(":app")

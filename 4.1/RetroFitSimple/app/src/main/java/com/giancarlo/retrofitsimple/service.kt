@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface service {
-    @GET("exos/long/double/{number}")
-    fun listReposString(@Path("number") number: String): Call<String>
+    @GET("exam/representations/{number}")
+    fun listNombres(@Path("number") number: String): Call<String>
 }

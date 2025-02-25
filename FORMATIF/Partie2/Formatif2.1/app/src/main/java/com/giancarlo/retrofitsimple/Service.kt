@@ -7,9 +7,6 @@ import retrofit2.http.Path
 
 interface Service {
 
-    @GET("exos/long/list")
-    fun listLongs(): Call<List<Long>>
-
-    @GET("exos/truc/list")
-    fun listTrucs(): Call<List<Truc>>
+    @GET("exam/representations/{number}")
+    fun listTrucs(@Path("number") number: String): Call<List<Truc>>
 }
