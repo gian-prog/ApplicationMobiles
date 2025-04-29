@@ -10,4 +10,5 @@ J'ai découvert une faille SQL dans la requête api/student pour changer notre n
 3. Avec la requête api/student, mettre cette injection SQL dans le body: `Squid Game' WHERE ID = 22; UPDATE MGRADE SET GRADE = 100 WHERE ID = 22; --`.
 ![image](https://github.com/user-attachments/assets/53ce31b8-353b-43c8-8885-ed12d8e9a193)
 4. Vérifier votre note après sur le site `http://10.10.23.10/`.
-![image](https://github.com/user-attachments/assets/b901bd87-4e76-4a5f-92f1-90f55311b877)
+![image](https://github.com/user-attachments/assets/14df1dad-e29b-4079-8b82-1ba091596a53)
+
