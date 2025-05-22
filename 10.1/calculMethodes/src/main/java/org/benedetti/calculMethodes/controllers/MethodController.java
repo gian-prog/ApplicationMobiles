@@ -3,6 +3,7 @@ package org.benedetti.calculMethodes.controllers;
 import org.benedetti.calculMethodes.model.Truc;
 import org.benedetti.calculMethodes.service.TrucService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -57,5 +58,20 @@ public class MethodController {
         System.out.println("La liste a bien été vidée");
         return ResponseEntity.ok("La liste a bien été vidée");
     }
-
+// <editor-fold desc="EXERCICE FORMATIF FINAL">
+    //FORMATIF FINAL:
+    // Gère les requêtes GET sur /exam/h25/{x}
+    @GetMapping("/exam/h25/{x}")
+    public ResponseEntity<String>  name(@PathVariable String x) {
+        // Si x fait 2 lettres ou moins, renvoie une erreur 400
+        if (x.length() <= 2) {
+            //Gestion de l'erreur personnalisée
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Erreur : le nom doit contenir plus de 2 lettres.");
+        }
+        return ResponseEntity.ok("Bonjour " + x);
     }
+    // </editor-fold>
+
+}
