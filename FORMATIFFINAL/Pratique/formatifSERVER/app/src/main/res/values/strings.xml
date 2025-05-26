@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">KUROMI</string>
+    <string name="open">Open</string>
+    <string name="closed">Closed</string>
+    <string name="Home">Home</string>
+    <string name="task">Task</string>
+    <string name="Create">Create</string>
+    <string name="task_create">Create a Task</string>
+    <string name="logout">Logout</string>
+    <string name="task_add">Add a task</string>
+    <string name="enter_name">Enter your username</string>
+    <string name="enter_pass">Enter your password</string>
+    <string name="update_prog">Update progress</string>
+    <string name="due_date">"Date Due : "</string>
+    <string name="percentTimeElapsed">"Percentage of time elapsed : "</string>
+    <string name="percent_taskProg">"Percentage of task progress : "</string>
+    <string name="btn_addTask">Add task</string>
+    <string name="subject_date">Date due (2023-05-24)</string>
+    <string name="confirm_pass">Confirm your password</string>
+    <string name="inscription">Inscription</string>
+    <string name="welcome">"Welcome, "</string>
+    <string name="menu">Menu</string>
+    <string name="task_name">name_of_the_task</string>
+    <string name="connection">Connexion</string>
+</resources>
