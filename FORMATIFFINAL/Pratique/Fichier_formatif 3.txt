@@ -1,0 +1,119 @@
+// Controller (Serveur)
+@Controller
+public class MonControleur {
+    
+    @GetMapping(value = "/exam/h25/{x}")
+    public @ResponseBody ResponseEntity<String> message(@PathVariable String x) {
+        if(x.length() >= 3) {
+            return ResponseEntity.ok("Bonjour " + x);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Mot trop court!");
+        }
+    }
+}
+
+// Client
+// Service
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Path
+
+
+interface Service {
+    @GET("exam/h25/{x}")
+    fun getMessage(@Path("x") x: String): Call<String>
+}
+
+// Retrofit
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
+
+object RetrofitUtil {
+    fun get(): Service {
+        val retrofit = Retrofit.Builder()
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("http://10.0.2.2:8080/")
+            .build()
+        val service = retrofit.create<Service>(Service::class.java)
+        return service
+    }
+}
+
+
+//  Activité
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import gouchere.com.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.button.setOnClickListener(){
+            val service: Service = RetrofitUtil.get()
+            val mot: String = binding.editText.text.toString()
+
+            service.getMessage(mot).enqueue(object : Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    if (response.isSuccessful) {
+                        binding.textView.text = response.body()
+                    } else {
+                        Toast.makeText(this@MainActivity, "Erreur: Mot trop court!", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    binding.textView.text = "Failure: ${t.message}"
+                }
+            })
+
+        }
+    }
+
+}
+
+
+// activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Entrez votre texte ici" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Envoyer" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+
+</LinearLayout>
+
+
